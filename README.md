@@ -46,7 +46,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'django',
-        'USER': 'mei',
+        'USER': 'm',
         'PASSWORD':'',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -65,7 +65,7 @@ ORM to map
 ## running migrations ##
 `python3 manage.py migrate` - create database table 
 
-(`python3 manage.py makemigration` - creates migration but doesn't apply)
+(`python3 manage.py makemigrations <appname>` - creates migration but doesn't apply)
 
 `psql -h localhost -d django;` check db
 
@@ -89,4 +89,86 @@ django=# \dt
  public | django_session             | table | x
 (10 rows)
 ```
+
+## create a basic view ##
+in *views.py* in app (like a web page)
+
+```
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+	return HttpResponse("Bubble Tea")
+```
+
+create  *urls.py*  in app folder (similar to *urls.py* in project)
+
+```
+from django.urls import path
+from .import views
+
+urlpatterns =[
+	path('',views.index,name="index")
+]
+```
+
+in *urls.py* in project
+
+```
+from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+	path('course/', include('course.urls')),
+    path('admin/', admin.site.urls),
+]
+```
+
+the webpage can be viewed at http://127.0.0.1:8000/course/ 
+
+## create a model ##
+
+fields are class variables and the type of data they will store.
+
+in *models.py* in app
+
+```
+from django.db import models
+
+# Create your models here.
+
+class Course(models.Model):
+	image = models.ImageField(upload_to='testssss/')
+	summary = models.CharField(max_length=200)
+
+	def __str__(self):
+		return self.summary
+```
+
+## create a superuser ##
+
+`python3 manage.py createsuperuser` food
+
+admin page can be accessed at http://127.0.0.1:8000/admin/ 
+
+## Register models
+
+in *admins.py* in app folder
+
+```
+from django.contrib import admin
+from .models import Course
+
+admin.site.register(Course)
+```
+
+## templates ##
+create a directory inside app (*templates/course/index.html*)
+in views.py in app
+
+```
+def index(request):
+	return render(request,'course/index.html')
+```
+
 
