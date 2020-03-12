@@ -171,4 +171,9 @@ def index(request):
 	return render(request,'course/index.html')
 ```
 
+### booststap ###
 
+copy the template and paste the code to your *index.html*
+
+copy and paste the css and js code in [here](https://getbootstrap.com/docs/4.4/getting-started/introduction/
+https://getbootstrap.com/) to your *index.html*
