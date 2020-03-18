@@ -177,3 +177,9 @@ copy the template and paste the code to your *index.html*
 
 copy and paste the css and js code in [here](https://getbootstrap.com/docs/4.4/getting-started/introduction/
 https://getbootstrap.com/) to your *index.html*
+
+
+
+------------
+project under /test
+to start the app: `DATADOG_TRACE_DEBUG=true DD_LOGS_INJECTION=true DD_TRACE_ANALYTICS_ENABLED=true ddtrace-run python3 manage.py runserver`
