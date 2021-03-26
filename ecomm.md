@@ -1,0 +1,6 @@
+- `virtualenv myenv`
+- `source activate myenv`
+- `pip install django`
+- `django-admin startproject backend`
+- `cd backend`
+- `python manage.py runserver`
